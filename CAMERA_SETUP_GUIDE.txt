@@ -1,0 +1,152 @@
+CAMERA CONFIGURATION GUIDE FOR REV CONTROL HUB
+===============================================
+
+This guide will help you configure your webcam with the REV Control Hub for MaximumDriveV3Beta.
+
+HARDWARE SETUP
+--------------
+
+1. CONNECT YOUR WEBCAM:
+   - Plug your USB webcam into one of the USB ports on the REV Control Hub
+   - Supported cameras include:
+     * Logitech C270
+     * Logitech C920
+     * Logitech C930e
+     * Microsoft LifeCam
+     * Most standard USB webcams
+
+2. POWER ON:
+   - Make sure the REV Hub is powered on
+   - Wait for it to fully boot (about 30 seconds)
+
+
+SOFTWARE CONFIGURATION (On Driver Station or Robot Controller)
+---------------------------------------------------------------
+
+METHOD 1: Using Driver Station App
+-----------------------------------
+
+1. OPEN DRIVER STATION:
+   - Launch the FTC Driver Station app on your phone/tablet
+   - Connect to your Robot Controller (REV Hub)
+
+2. ACCESS CONFIGURATION:
+   - Tap the three dots (⋮) in the upper right corner
+   - Select "Configure Robot"
+
+3. CREATE/EDIT CONFIGURATION:
+   - If you have an existing configuration, select it
+   - If not, tap "New" to create a new configuration
+   - Give it a name (like "RobotConfig")
+
+4. ADD THE WEBCAM:
+   - Scroll down to find "Webcam" in the list of devices
+   - If you see your webcam listed automatically, tap on it
+   - Name it exactly: "Webcam" (case sensitive)
+   - If you don't see it automatically:
+     * Tap "Scan" at the top
+     * Your webcam should appear
+     * Select it and name it "Webcam"
+
+5. SAVE CONFIGURATION:
+   - Tap "Done" in the upper right
+   - Tap "Activate" to make this configuration active
+
+
+METHOD 2: Using Robot Controller App (if accessible)
+-----------------------------------------------------
+
+1. CONNECT TO ROBOT CONTROLLER:
+   - Connect your phone/computer to the Robot Controller's WiFi
+   - Open a web browser and go to: http://192.168.43.1:8080
+   - OR use the Robot Controller app if on the RC phone
+
+2. NAVIGATE TO CONFIGURATION:
+   - Tap the three dots menu
+   - Select "Configure Robot"
+
+3. FOLLOW STEPS 3-5 FROM METHOD 1 ABOVE
+
+
+VIEWING CAMERA STREAM ON DRIVER STATION
+----------------------------------------
+
+1. START YOUR OPMODE:
+   - Select "MaximumDriveV3Beta" from TeleOp
+   - Press INIT
+
+2. VIEW CAMERA FEED:
+   - On the Driver Station screen, you should see a camera preview button
+   - Tap it to view the live camera feed
+   - The feed will appear in a small window or full screen depending on your DS version
+
+3. TELEMETRY INFO:
+   - The main telemetry screen will show:
+     * Camera FPS (frames per second)
+     * Camera State (STREAMING, OPENING, etc.)
+
+
+TROUBLESHOOTING
+---------------
+
+CAMERA NOT DETECTED:
+- Check USB connection
+- Try a different USB port on the REV Hub
+- Restart the REV Hub
+- Make sure the webcam is USB 2.0 compatible
+- Some webcams require more power - try a powered USB hub
+
+"Webcam" NOT FOUND ERROR:
+- Make sure the camera is named exactly "Webcam" in your configuration
+- Case sensitive! Must have capital W
+- Check that your configuration is ACTIVATED
+
+LOW FPS OR CHOPPY VIDEO:
+- Normal FPS is around 20-30 for most webcams
+- Lower resolution in code if needed (can modify VisionPortal settings)
+- Make sure you're not running too many processes on the RC
+
+CAMERA WORKS BUT NO PREVIEW ON DRIVER STATION:
+- Check Driver Station app version (update if old)
+- Try tapping the camera icon on the DS screen
+- Some older DS versions don't support preview - upgrade to latest FTC SDK
+
+
+ADVANCED: CHANGING CAMERA SETTINGS
+-----------------------------------
+
+If you want to modify camera resolution or other settings, you can replace the simple initialization in the code with:
+
+    visionPortal = new VisionPortal.Builder()
+        .setCamera(hardwareMap.get(WebcamName.class, "Webcam"))
+        .setCameraResolution(new Size(640, 480))  // Set resolution
+        .setStreamFormat(VisionPortal.StreamFormat.MJPEG)
+        .enableLiveView(true)
+        .build();
+
+Common resolutions:
+- 320x240 (fast, lower quality)
+- 640x480 (balanced)
+- 1280x720 (high quality, slower)
+
+
+CHECKING IF CAMERA IS WORKING
+------------------------------
+
+Look at the telemetry when you run MaximumDriveV3Beta:
+
+✓ WORKING:
+  Camera FPS: 28.5
+  Camera State: STREAMING
+
+✗ NOT WORKING:
+  Camera: NOT INITIALIZED
+  (or no camera section appears)
+
+
+NEED MORE HELP?
+---------------
+
+- Check REV Robotics documentation: https://docs.revrobotics.com
+- FTC documentation: https://ftc-docs.firstinspires.org
+- Make sure your FTC SDK is up to date (version 8.2 or newer recommended for VisionPortal)

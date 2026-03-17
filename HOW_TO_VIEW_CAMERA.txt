@@ -1,0 +1,167 @@
+HOW TO VIEW CAMERA FEED ON FTC DRIVER STATION
+==============================================
+
+You mentioned the camera status and FPS are showing in telemetry, which means the camera is working! 
+Now you need to view the actual video feed on the Driver Station screen.
+
+METHOD 1: USING THE CAMERA STREAM BUTTON (Most Common)
+-------------------------------------------------------
+
+1. START YOUR OPMODE:
+   - Select "MaximumDriveV4Beta" from TeleOp
+   - Press INIT
+   - Press START
+
+2. LOOK FOR THE CAMERA ICON:
+   - On the Driver Station screen, look for a CAMERA ICON (usually looks like 📷)
+   - This icon typically appears:
+     * In the top-right corner of the screen
+     * Near the telemetry display
+     * In a toolbar at the top or bottom
+
+3. TAP THE CAMERA ICON:
+   - Tap the camera icon to open the camera view
+   - The video feed should appear either:
+     * In a small preview window (which you can expand)
+     * As a full-screen overlay
+     * In a separate section of the screen
+
+4. IF YOU DON'T SEE THE CAMERA ICON:
+   - Swipe down from the top of the screen (like opening notifications)
+   - Look in the settings/menu (three dots or hamburger menu)
+   - Try tapping on the telemetry area - some versions show camera there
+
+
+METHOD 2: USING CAMERA STREAM MENU
+-----------------------------------
+
+1. While OpMode is running, tap the THREE DOTS (⋮) menu
+2. Look for "Camera Stream" or "View Camera"
+3. Select it to open the camera feed
+
+
+METHOD 3: DS APP VERSIONS
+--------------------------
+
+Different Driver Station app versions show camera differently:
+
+**DS Version 8.0+:**
+- Camera preview appears automatically in a dedicated section
+- Tap it to expand to full screen
+
+**DS Version 7.x:**
+- Look for camera icon in top-right corner
+- May need to enable "Show Camera Stream" in settings
+
+**DS Version 6.x and older:**
+- May not support live camera preview
+- SOLUTION: Update to latest DS version from Google Play Store
+
+
+VIEWING OPTIONS ONCE CAMERA IS OPEN
+------------------------------------
+
+FULL SCREEN MODE:
+- Tap the video feed once it's visible
+- Should expand to fill the screen
+- Telemetry may minimize or move to the side
+
+SPLIT SCREEN MODE:
+- Some DS versions let you see both telemetry AND camera
+- Look for a "split" or "layout" option in the camera view
+- Or pinch/zoom to resize the camera window
+
+PICTURE-IN-PICTURE:
+- Camera appears as small window over telemetry
+- You can usually drag it around the screen
+- Tap to expand/collapse
+
+
+TROUBLESHOOTING: "I STILL CAN'T SEE VIDEO"
+-------------------------------------------
+
+ISSUE: Camera icon appears but video is black
+FIX:
+- The camera might be initializing
+- Wait 5-10 seconds after starting OpMode
+- Check that your telemetry shows "Camera State: STREAMING" (not OPENING)
+
+ISSUE: No camera icon anywhere
+FIX:
+- Update Driver Station app to latest version
+- Check DS app settings for "Enable Camera Stream" or similar
+- Your DS version might be too old for VisionPortal
+
+ISSUE: Camera works in Robot Controller but not on DS
+FIX:
+- Check WiFi connection quality
+- Try reducing camera resolution in code (640x480 or 320x240)
+- Bandwidth might be limited - camera uses a lot of data
+
+ISSUE: Laggy or frozen video
+FIX:
+- Move Driver Station closer to Robot Controller
+- Lower camera resolution in code
+- Close other apps on DS device
+
+
+ALTERNATIVE: VIEW ON ROBOT CONTROLLER WEB INTERFACE
+----------------------------------------------------
+
+If Driver Station won't show the feed, you can view it on a computer:
+
+1. Connect computer to Robot Controller WiFi
+2. Open browser and go to: http://192.168.43.1:8080
+3. You should see the camera stream in the web interface
+4. This is useful for debugging but not practical during a match
+
+
+CHECKING IF CAMERA IS ACTUALLY STREAMING
+-----------------------------------------
+
+Based on your telemetry:
+✓ Camera FPS: (showing a number) = Camera is capturing frames
+✓ Camera State: STREAMING = Camera is working
+
+If these are showing correctly, the camera IS working. The issue is just viewing 
+it on the Driver Station screen.
+
+
+DRIVER STATION APP UPDATE
+--------------------------
+
+If you're having trouble, make sure your DS app is up to date:
+
+1. Open Google Play Store (or equivalent)
+2. Search for "FTC Driver Station"
+3. If "Update" button shows, tap it
+4. Restart DS app after updating
+
+Recommended minimum version: 8.0 or newer for full VisionPortal support
+
+
+QUICK CHECKLIST
+---------------
+
+□ OpMode is running (not just initialized)
+□ Telemetry shows camera FPS and "STREAMING"
+□ Looked for camera icon in all corners of screen
+□ Tried tapping on telemetry area
+□ Checked three-dots menu for camera option
+□ DS app is version 8.0 or newer
+□ WiFi connection is strong
+□ Waited at least 10 seconds after starting OpMode
+
+
+STILL STUCK?
+------------
+
+Try this test:
+1. In Robot Configuration, note your camera name: "Webcam123"
+2. Run MaximumDriveV4Beta
+3. Check telemetry - does it show FPS? (If yes, camera works)
+4. Take a photo of your DS screen and note which DS version you're using
+5. This will help diagnose if it's a DS app issue vs camera issue
+
+Remember: If telemetry shows FPS and STREAMING, your camera is 100% working!
+The issue is just making the DS app display the video feed to you.
